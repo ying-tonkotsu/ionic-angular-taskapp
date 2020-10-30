@@ -9,6 +9,7 @@
 
 <ion-content padding>
 <ion-list>
-    <ion-item *ngFor="let t of tasks">{{t.name}}</ion-item>
+  <!-- タップするとchangeTaskが実行されるようにする -->
+    <ion-item *ngFor="let t of tasks" (tap)="changeTask()">{{t.name}}</ion-item>
 </ion-list>
 </ion-content>
