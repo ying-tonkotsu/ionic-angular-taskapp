@@ -14,8 +14,8 @@
   <ion-list>
     <ion-item>
       <ion-label floating>タスク</ion-label>
-      <ion-input type="text" [(ngModel)]="task" name="task" required minlength="3" maxlength="20"></ion-input>
       <!-- ３文字以上２０文字以内のバリデーションを追加 -->
+      <ion-input type="text" [(ngModel)]="task" name="task" required minlength="3" maxlength="20"></ion-input>
       <!-- [(ngModel)]というプロパティで値をTSにやりとりできる　同時にnameも追記する -->
     </ion-item>
   </ion-list>

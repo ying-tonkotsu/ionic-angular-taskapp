@@ -7,7 +7,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+// 
 
 @Component({
   templateUrl: 'app.html'
@@ -29,9 +29,9 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'My First List', component: ListPage },
-      { title: 'My First List', component: ListPage },
-      { title: 'Hello Kure', component: HelloKurePage },
+      { title: 'タスク登録', component: HelloKurePage },
+      { title: 'タスク一覧', component:'TaskListPage'}
+      // LasyLoadingするページは文字列として記述するルールがあるため''で囲む
     ];
   }
 
