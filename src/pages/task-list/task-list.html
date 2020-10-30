@@ -10,6 +10,7 @@
 <ion-content padding>
 <ion-list>
   <!-- タップするとchangeTaskが実行されるようにする -->
-    <ion-item *ngFor="let t of tasks" (tap)="changeTask()">{{t.name}}</ion-item>
+  <!-- *ngFor はループ回数をindexに格納するのでそれを変数iに入れてイベントに引き渡す -->
+    <ion-item *ngFor="let t of tasks;let i = index" (tap)="changeTask(i)">{{t.name}}</ion-item>
 </ion-list>
 </ion-content>

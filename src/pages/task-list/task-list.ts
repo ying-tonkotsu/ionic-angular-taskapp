@@ -36,7 +36,8 @@ export class TaskListPage {
     console.log('ionViewDidLoad TaskListPage');
   }
 // (アクションシートコントローラー)changeTaskを定義
-  changeTask(){
+// 引数をindexとして受け取る。型はnumber
+  changeTask(index: number){
     let actionSheet = this.actionSheetCtrl.create({
       title: 'タスクの変更',
       buttons: [
@@ -44,7 +45,10 @@ export class TaskListPage {
           text: '削除',
           role: 'destructive',
           handler: () => {
-            console.log('Destructive clicked');
+            // 削除の処理　splice=削除処理
+            // index番目を削除する処理 →　localStorageの値を上書き
+            this.tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(this.tasks));
           }
         },{
           text: '変更',
