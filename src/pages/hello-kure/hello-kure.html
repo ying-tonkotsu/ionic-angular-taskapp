@@ -9,15 +9,19 @@
 </ion-header>
 
 <!-- submitイベントが起きた時にメソッドを走らせる -->
-<form padding (submit)="addTask()">
+<form padding (submit)="addTask()" #f="ngForm">
+  <!-- #ngFrom:バリデーションを行うため -->
   <ion-list>
     <ion-item>
       <ion-label floating>タスク</ion-label>
-      <ion-input type="text" [(ngModel)]="task" name="task"></ion-input>
+      <ion-input type="text" [(ngModel)]="task" name="task" required minlength="3" maxlength="20"></ion-input>
+      <!-- ３文字以上２０文字以内のバリデーションを追加 -->
       <!-- [(ngModel)]というプロパティで値をTSにやりとりできる　同時にnameも追記する -->
     </ion-item>
   </ion-list>
-  <button type="submit" ion-button block>追加</button>
+  <button type="submit" ion-button block [disabled]="!f.form.valid">追加</button>
+  <!-- バリデーションを通過していないとmタスクの追加をできないようにするため[disabled]を追記
+    フォームf内のバリデーションform.vaidを真偽判定しfalseの場合[disabled]を有効にする -->
 </form>
   <ion-list>
     <ion-item *ngFor="let t of tasks">{{t.name}}</ion-item>
