@@ -1,5 +1,7 @@
 <ion-menu [content]="content" type="overlay">
-
+  <!-- [contnt]プロパティにcontentを指定することにより、メニューが表示されている間は#contentがついている
+  <ion-nav>を右に押し出して表示している -->
+<!-- メニューバー -->
   <ion-header>
     <ion-toolbar>
       <ion-title>Pages</ion-title>
@@ -8,12 +10,15 @@
 
   <ion-content>
     <ion-list>
+      <!-- クリックするとopenPage(p)が実行される -->
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
   </ion-content>
-
+<!-- メニューバー -->
 </ion-menu>
-
+<!-- 後ろのページ -->
+<!-- swipeBackEnabled="false"＝スワイプを無効化 -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<!-- root = 何を表示するか決めるプロパティ　rootpage として　app.component.tsで設定されている -->

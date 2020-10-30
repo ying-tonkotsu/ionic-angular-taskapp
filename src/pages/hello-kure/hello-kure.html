@@ -1,0 +1,28 @@
+<ion-content padding>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>タスク登録</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- submitイベントが起きた時にメソッドを走らせる -->
+<form padding (submit)="addTask()">
+  <ion-list>
+    <ion-item>
+      <ion-label floating>タスク</ion-label>
+      <ion-input type="text" [(ngModel)]="task" name="task"></ion-input>
+      <!-- [(ngModel)]というプロパティで値をTSにやりとりできる　同時にnameも追記する -->
+    </ion-item>
+  </ion-list>
+  <button type="submit" ion-button block>追加</button>
+</form>
+  <ion-list>
+    <ion-item *ngFor="let t of tasks">{{t.name}}</ion-item>
+    <!--*ngFor"let [変数] of [展開する配列]" という構文で配列をループで取り出して変数に入れることができる  -->
+    <!-- {{t.name}}で取り出したオブジェクトをバインディングしている -->
+  </ion-list>
+</ion-content>
+

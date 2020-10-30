@@ -1,7 +1,10 @@
 {
   "name": "ionic-anglar-test",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "ionic-angular"
 }
