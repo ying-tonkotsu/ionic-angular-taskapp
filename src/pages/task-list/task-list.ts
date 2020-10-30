@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { from } from 'rxjs/observable/from';
 
 /**
@@ -24,7 +24,8 @@ export class TaskListPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public actionSheetCtrl: ActionSheetController
+    public actionSheetCtrl: ActionSheetController,
+    public alertCtrl: AlertController
     ) {}
   ionViewWillEnter(){
     if(localStorage.getItem('tasks')){
@@ -52,8 +53,8 @@ export class TaskListPage {
           }
         },{
           text: '変更',
-          handler: () => {
-            console.log('Archive clicked');
+          handler: () =>{
+             this._renameTask(index);
           }
         },{
           text: '閉じる',
@@ -65,6 +66,36 @@ export class TaskListPage {
       ]
     });
     actionSheet.present();
+  }
+
+  // タスク変更のアラート処理
+  // actionSheetの中に書くとインデントが深くなってしまうので、別に書いて呼び出す
+  _renameTask(index: number){
+    let prompt = this.alertCtrl.create({
+      title: '変更後のタスク',
+      inputs: [
+        {
+          name: 'task',
+          placeholder: 'タスク',
+          value: this.tasks[index].name
+        },
+      ],
+      buttons: [
+        {
+          text: '閉じる'
+        },
+        {
+          text: '保存',
+          handler: data => {
+            // タスクのindex番目を書き換える
+            this.tasks[index] = { name:data.task };
+            // localStorageに保存する
+            localStorage.setItem('tasks', JSON.stringify(this.tasks));
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }
