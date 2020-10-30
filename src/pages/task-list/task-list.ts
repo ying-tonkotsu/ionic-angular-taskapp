@@ -8,14 +8,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
+//  LazyLoadingを実現するため
 @IonicPage()
 @Component({
   selector: 'page-task-list',
   templateUrl: 'task-list.html',
 })
 export class TaskListPage {
+  tasks: {name: string}[]= [
+    {name: 'タスク1'},
+    {name: 'タスク2'},
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+  ionViewWillEnter(){
+    if(localStorage.getItem('tasks')){
+      this.tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
   }
 
   ionViewDidLoad() {
