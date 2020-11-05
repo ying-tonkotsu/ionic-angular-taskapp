@@ -27,6 +27,7 @@ export class TaskListPage {
     public actionSheetCtrl: ActionSheetController,
     public alertCtrl: AlertController
     ) {}
+  // ローカルストレージに既にタスクがあるなら表示させる
   ionViewWillEnter(){
     if(localStorage.getItem('tasks')){
       this.tasks = JSON.parse(localStorage.getItem('tasks'));
